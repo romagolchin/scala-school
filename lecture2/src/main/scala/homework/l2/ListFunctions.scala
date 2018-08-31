@@ -16,6 +16,15 @@ package homework.l2
   */
 object ListFunctions {
 
-  def fold[A, B](startValue: B, list: List[A])(f: (B, A) => B): B = ???
+  def fold[A, B](startValue: B, list: List[A])(f: (B, A) => B): B = {
+    def helper(list: List[A], acc: B, f: (B, A) => B): B = {
+      list match {
+        case Nil => acc
+        case x :: xs => helper(xs, f (acc, x), f)
+      }
+    }
+
+    helper(list, startValue, f)
+  }
 
 }
